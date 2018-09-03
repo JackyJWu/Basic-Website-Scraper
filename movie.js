@@ -1,8 +1,8 @@
 var cheerio = require('cheerio');
 var request = require('request');
 //writestream
-// const fs = require('fs');
-// const writeStream = fs.createWriteStream('movies.csv');
+ const fs = require('fs');
+ const writeStream = fs.createWriteStream('movies.csv');
 
 //Write Headers for writestream
 // writeStream.write('title, price,stock \n');
@@ -19,18 +19,15 @@ request('https://www.cineplex.com/Showtimes/any-movie/cineplex-odeon-crowfoot-cr
     $('a.movie-details-link-click').each((i, el) => {
       const title = $(el).text().replace(/\s\s+/g, '');
       console.log(title);
+      writeStream.write(`${title} \n`);
     });
     console.log('');
     // Printing All the movie time duration
     console.log('Prints the times of the movies');
     $('div.h3.showtime-card--title span').each((i, el) => {
-      const leng = $(el).text().replace('|', '');
-
-      if(leng == '}'){
-
-      }else{
-        console.log(leng);
-      }
+      const leng = $(el).next().text().replace(/\s\s+/g, '');
+      console.log(leng);
+      writeStream.write(`${leng}\n`);
     });
 
 
