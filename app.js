@@ -1,6 +1,11 @@
 var cheerio = require('cheerio');
 var request = require('request');
-var hrefText = "dodo";
+//writestream
+const fs = require('fs');
+const writeStream = fs.createWriteStream('post.csv');
+
+//Write Headers for writestream
+// writeStream.write('title, price,stock \n');
 
 request('http://books.toscrape.com/', (error, response, html) => {
   if(!error && response.statusCode == 200){
@@ -43,8 +48,12 @@ request('http://books.toscrape.com/', (error, response, html) => {
 
 
        const stock = $(el).find('p.instock.availability').text().replace(/\s\s+/g, '');
-              console.log(title+'\t\t\t' + price + '\t\t\t'+  stock);
+              // console.log(title+'\t\t\t' + price + '\t\t\t'+  stock);
+              //write to CSV
+              writeStream.write('${title}, ${price}, ${stock} \n');
+
      });
+     console.log('Scraping Done...');
 
      //replace(/\s\s+/g removes whitespace
     // const siteHeading = $('.intro h1');
