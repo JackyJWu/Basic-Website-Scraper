@@ -8,9 +8,10 @@
 
    index.js runs the scraper on my personal website (https://jackyjwu.github.io/)
           -to run this program 'nodemon index.js'
+          
           output : the navbar titles  and the href links.
 
-   * This will be where I store my webscraping work.
+ This will be where I store my webscraping work.
 
 
 ## Built With
