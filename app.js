@@ -50,7 +50,7 @@ request('http://books.toscrape.com/', (error, response, html) => {
        const stock = $(el).find('p.instock.availability').text().replace(/\s\s+/g, '');
               // console.log(title+'\t\t\t' + price + '\t\t\t'+  stock);
               //write to CSV
-              writeStream.write('${title}, ${price}, ${stock} \n');
+      writeStream.write(`${title}, ${price}, ${stock} \n`);
 
      });
      console.log('Scraping Done...');
