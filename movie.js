@@ -15,21 +15,37 @@ request('https://www.cineplex.com/Showtimes/any-movie/cineplex-odeon-crowfoot-cr
 
 
     //Prints prints all the titles of the books
-    console.log('Prints all the movie titles')
+    console.log('Prints all the movie titles');
     $('a.movie-details-link-click').each((i, el) => {
       const title = $(el).text().replace(/\s\s+/g, '');
       console.log(title);
-      writeStream.write(`${title} \n`);
+      //writeStream.write(`${title} \n`);
     });
     console.log('');
     // Printing All the movie time duration
     console.log('Prints the times of the movies');
-    $('div.h3.showtime-card--title span').each((i, el) => {
-      const leng = $(el).next().text().replace(/\s\s+/g, '');
+    $('div.h3 span:nth-of-type(2)').each((i, el) => {
+      const leng = $(el).text()
       console.log(leng);
-      writeStream.write(`${leng}\n`);
+      //writeStream.write(`${leng}\n`);
     });
 
+    // Prints both movie time and length
+    console.log('Print Movie with Movie time');
+    $('div.showtime-card div.h3').each((i, el) => {
+      const movie = $(el).find('a.movie-details-link-click').text().replace(/\s\s+/g, '');
+
+
+      const duration = $(el).find('div.h3 span:nth-of-type(2)').text();
+
+
+      // const stock = $(el).find('p.instock.availability').text().replace(/\s\s+/g, '');
+       console.log(movie+'\t\t\t' + duration );
+      //write to CSV
+      writeStream.write(`${movie}, ${duration} \n`);
+
+
+    });
 
    // console.log('Prints all the titles of the books');
    // $('h3 a').each((i, el) => {
