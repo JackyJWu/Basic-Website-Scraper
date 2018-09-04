@@ -31,7 +31,8 @@ request('https://www.cineplex.com/Showtimes/any-movie/cineplex-odeon-crowfoot-cr
     });
 
 
-    // Printing all the Times for movie
+    // Printing the movie title, duration, and time.
+    writeStream.write(`${"Movie Title:"}, ${"Duration: "}, ${"Movie Times:"} \n`);
     $('div.grid__item.no-page-break-inside').each((i,el) =>{
       const movietime =  $(el).find('a.showtime').text().replace(/\s\s+/g, '').replace("PM", "PM ").replace("AM", "AM ");
       console.log(movietime);
@@ -45,6 +46,7 @@ request('https://www.cineplex.com/Showtimes/any-movie/cineplex-odeon-crowfoot-cr
       // });
 
       console.log(movie+'\t\t\t' + duration + '\t\t\t' + movietime );
+
       writeStream.write(`${movie}, ${duration}, ${movietime} \n`);
     });
 
