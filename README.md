@@ -8,8 +8,13 @@
 
    index.js runs the scraper on my personal website (https://jackyjwu.github.io/)
           -to run this program 'nodemon index.js'
-          
+
           output : the navbar titles  and the href links.
+
+  movie.js runs the scraper on a movie theater site
+          -to run this program 'nodemon movie.js'
+
+          output : movies.csv which contains organized list of movies and the time duration
 
  This will be where I store my webscraping work.
 
