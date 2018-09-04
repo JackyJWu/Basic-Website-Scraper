@@ -30,7 +30,26 @@ request('https://www.cineplex.com/Showtimes/any-movie/cineplex-odeon-crowfoot-cr
       //writeStream.write(`${leng}\n`);
     });
 
+
+    // Printing all the Times for movie
+    $('div.grid__item.no-page-break-inside').each((i,el) =>{
+      const movietime =  $(el).find('a.showtime').text().replace(/\s\s+/g, '').replace("PM", "PM ").replace("AM", "AM ");
+      console.log(movietime);
+
+      const movie = $(el).find('a.movie-details-link-click').text().replace(/\s\s+/g, '');
+
+      const duration = $(el).find('div.h3 span:nth-of-type(2)').text();
+      // $('a.showtime').each((i,j) =>{
+      //   const movietime =  $(j).text().replace(/\s\s+/g, '');
+      //   console.log(movietime);
+      // });
+
+      console.log(movie+'\t\t\t' + duration + '\t\t\t' + movietime );
+      writeStream.write(`${movie}, ${duration}, ${movietime} \n`);
+    });
+
     // Prints both movie time and length
+    /*
     console.log('Print Movie with Movie time');
     $('div.showtime-card div.h3').each((i, el) => {
       const movie = $(el).find('a.movie-details-link-click').text().replace(/\s\s+/g, '');
@@ -46,6 +65,7 @@ request('https://www.cineplex.com/Showtimes/any-movie/cineplex-odeon-crowfoot-cr
 
 
     });
+*/
 
    // console.log('Prints all the titles of the books');
    // $('h3 a').each((i, el) => {
